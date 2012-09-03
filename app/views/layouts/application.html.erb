@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BrandName</title>
+  <style type="text/css">
+    .content{
+        /*background-image: url('/assets/batman_bg.jpg');*/
+        background-image: url('/assets/comic_bg.jpg');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+
+    }
+  </style>
+
+  <title>Chronicles</title>
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -23,7 +33,7 @@
   <div class="navbar navbar-fixed-top" style="z-index: 999999999">
     <div class="navbar-inner" style="z-index: 999999999">
       <div class="container">
-        <a class="brand" href="/">BrandName</a>
+        <a class="brand" href="/">Chronicles</a>
         <ul class="nav">
           <li><a href="#about" style="color:white;">About</a></li>
           <!--<li><a href="#contact" style="color:white;">Contact</a></li>-->
@@ -48,10 +58,10 @@
   </div>
   <div class="container">
 
-    <div class="page-header" style="height:100px"></div>
-    <div style="position:absolute;margin-top: -60px;" class="span12">
-      <h2>  <%= yield(:page_header) %></h2>
-    </div>
+    <!--<div class="page-header" style="height:100px"></div>-->
+    <!--<div style="position:absolute;margin-top: -60px;" class="span12">-->
+      <!--<h2>  <%#= yield(:page_header) %></h2>-->
+    <!--</div>-->
   </div>
   <div class="container">
 

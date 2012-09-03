@@ -1,2 +1,11 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<div class="img_block" style="border: 2px solid #ffffff; height: 500px; width: 960px; overflow: auto;">
+
+  <% @exam_papers.each_with_index do |exam_paper, index| %>
+      <div id="exam_paper_img_<%= index+1 %>" style="height: 140px; width: 280px; margin: 15px 0px 0px 15px; padding:5px 2px 2px 5px; position: relative; float:left; border: 3px solid white; border-radius: 3px; text-align: center;" title="<%= exam_paper.name.titleize %>">
+        <div id="exam_paper_title_<%= index+1 %>" style="text-align: center; font-weight: bold; color: white"> <%= exam_paper.name.titleize %> </div>
+        <%= link_to (image_tag(exam_paper.avatar.url, :style => "height:120px; width:180px;")) %>
+        <%#= image_tag exam_paper.avatar.url, :style => "height:120px; width:180px;" %>
+      </div>
+  <% end %>
+
+</div>

@@ -1,7 +1,11 @@
 Chronicles::Application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   get "welcome/index"
 
   devise_for :users
+
+  resources :exam_papers
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -53,7 +57,11 @@ Chronicles::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
-root:to=>'welcome#index'
+#root :to=>'welcome#index'
+  match "/index"=>"welcome#index",:as=>"index"
+
+  root :to=>'welcome#homepage'
+
 
   # See how all your routes lay out with "rake routes"
 
