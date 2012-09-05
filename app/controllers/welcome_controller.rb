@@ -6,8 +6,8 @@ class WelcomeController < ApplicationController
   end
 
   def index
-    @exam_papers=ExamPaper.all
-    return @exam_papers
+    @comic_pages=Page.all
+    #return @comic_pages
   end
 
 end

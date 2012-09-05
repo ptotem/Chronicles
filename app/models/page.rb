@@ -1,8 +1,10 @@
 class Page < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :comic_id, :name, :page_style_id, :panel
+  has_attached_file :panel
 
-  belongs_to :exam_paper
-
-  has_many :panels
+  belongs_to :comic
+  has_many :options
+  belongs_to :page_style
+  has_many :selections
 
 end

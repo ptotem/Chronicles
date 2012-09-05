@@ -11,40 +11,46 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120829134042) do
+ActiveRecord::Schema.define(:version => 20120904022013) do
 
-  create_table "choices", :force => true do |t|
+  create_table "comics", :force => true do |t|
     t.string   "name"
-    t.integer  "panel_id"
-    t.integer  "test_id"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "exam_papers", :force => true do |t|
+  create_table "options", :force => true do |t|
+    t.integer  "page_id"
     t.string   "name"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "panel_file_name"
+    t.string   "panel_content_type"
+    t.integer  "panel_file_size"
+    t.datetime "panel_updated_at"
+  end
+
+  create_table "page_styles", :force => true do |t|
+    t.string   "name"
+    t.integer  "xpos"
+    t.integer  "ypos"
+    t.integer  "height"
+    t.integer  "width"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "pages", :force => true do |t|
+    t.integer  "comic_id"
+    t.integer  "page_style_id"
     t.string   "name"
-    t.integer  "exam_paper_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  create_table "panels", :force => true do |t|
-    t.string   "name"
-    t.integer  "next_pg"
-    t.integer  "page_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "panel_file_name"
+    t.string   "panel_content_type"
+    t.integer  "panel_file_size"
+    t.datetime "panel_updated_at"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -60,12 +66,12 @@ ActiveRecord::Schema.define(:version => 20120829134042) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
-  create_table "tests", :force => true do |t|
-    t.string   "name"
-    t.integer  "exam_paper_id"
+  create_table "selections", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.integer  "page_id"
+    t.integer  "option_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
