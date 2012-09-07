@@ -5,10 +5,6 @@ class CreatePages < ActiveRecord::Migration
       t.integer :page_style_id
       t.string :name
 
-      t.integer :comic_id
-      t.integer :page_style_id
-
-
       t.timestamps
     end
   end

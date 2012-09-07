@@ -4,8 +4,6 @@ class CreateOptions < ActiveRecord::Migration
       t.integer :page_id
       t.string :name
 
-      t.integer :page_id
-
       t.timestamps
     end
   end

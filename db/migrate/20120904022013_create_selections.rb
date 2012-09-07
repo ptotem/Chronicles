@@ -5,10 +5,6 @@ class CreateSelections < ActiveRecord::Migration
       t.integer :page_id
       t.integer :option_id
 
-      t.integer :user_id
-      t.integer :page_id
-      t.integer :option_id
-
       t.timestamps
     end
   end
