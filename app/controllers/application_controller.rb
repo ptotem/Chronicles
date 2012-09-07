@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
 
   def after_sign_in_path_for(resource)
-    index_path
+    comics_path
   end
 
 end

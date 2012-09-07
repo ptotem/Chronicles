@@ -4,25 +4,39 @@
 
 <script type="text/javascript" src="/assets/jquery.anythingslider.js"></script>
 
-<%= image_tag (@comic.pages.first.panel.url), :style => "position:absolute; width:960px; left:0; top:0;"  %>
+<%= image_tag (@comic.pages.first.panel.url), :style => "position:absolute; width:960px; left:0; top:0;" %>
 
 <div style="left: 0px; top: 850px;  position: relative; height: 220px; width: 900px; text-align:center; float: left; z-index: 9999">
 
-<div id="slider" style="height: 300px; width: 840px; position: relative;">
-  <% @comic.pages.first.options.each do |option| %>
+  <div id="slider" style="height: 300px; width: 840px; position: relative;">
 
-        <%= image_tag option.panel.url, :style => "height:220px; width:400px; " %>
-      <%#= link_to (image_tag(option.panel.url, :style => "height:220px; width:400px;")) %>
 
+    <% @comic.pages.first.options.each do |option| %>
+        <%= image_tag option.panel.url, :style => "height:220px; width:400px;" %>
+        <%#= link_to (image_tag(option.panel.url, :style => "height:220px; width:400px;")) %>
+    <% end %>
+
+  </div>
+
+  <%= form_tag :action => "show", :controller => "selections" do %>
+      <% @comic.pages.first.options.each_with_index do |option_name, index| %>
+          <%= hidden_field_tag :option_id, option_name.id %>
+          <div><%= javascript_tag "$('#slider').bind('slide_complete', function(event, slider) { var co = slider.currentPage; if (co == 1) {alert('1')}; }) " %></div>
+      <% end %>
+      <div><%= submit_tag 'OK' %></div>
   <% end %>
-</div>
+
+
 </div>
 
 
 <script type="text/javascript">
+
     $(function () {
         $('#slider').anythingSlider(); // add any non-default options here
     });
+
+
 </script>
 
 

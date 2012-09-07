@@ -1,4 +1,6 @@
 Chronicles::Application.routes.draw do
+  get "selections/index"
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   get "welcome/index"
@@ -6,7 +8,7 @@ Chronicles::Application.routes.draw do
   devise_for :users
 
   resources :comics
-
+  resources :selections
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -60,6 +62,11 @@ Chronicles::Application.routes.draw do
   # root :to => 'welcome#index'
 #root :to=>'welcome#index'
   match "/index"=>"welcome#index",:as=>"index"
+  match "/comics/:id"=>"comics#show",:as=>"show"
+  match "/selections/:id"=>"selections#show",:as=>"show"
+
+  #comic/:id/page/:id
+
 
   root :to=>'welcome#homepage'
 

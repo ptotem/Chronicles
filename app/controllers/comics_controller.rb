@@ -13,6 +13,7 @@ class ComicsController < ApplicationController
   # GET /comics/1
   # GET /comics/1.json
   def show
+
     @comic = Comic.find(params[:id])
 
     respond_to do |format|

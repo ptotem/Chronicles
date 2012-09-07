@@ -1,0 +1,19 @@
+<style type="text/css">
+  h1{
+      color: white;
+  }
+</style>
+
+<%# @selections.each do |selection| %>
+    <h1> <%= @selection.option_id %> </h1>
+    <h1> <%= @selection.option.name %> </h1>
+    <%= image_tag @selection.option.panel.url, :style => "position:absolute; width:960px; left:20px; top:20px;" %>
+
+<%# end %>
+<div style="left: 60px; top: 740px;  position: relative; height: 350px; width: 810px; text-align:center; float: left; z-index: 9999">
+
+  <div id="page2_options" style="border: 1px solid red; height: 350px; width: 810px; position: relative;">
+
+  </div>
+
+</div>
