@@ -1,42 +1,98 @@
 <link rel="stylesheet" href="/assets/anythingslider.css" type="text/css" media="screen"/>
 <link rel="stylesheet" href="/assets/theme-metallic.css" type="text/css" media="screen"/>
 
+<style type="text/css">
+    .scrolling_page {
+        float: left;
+        width: 900px;
+        padding: 10px;
+        /*background: #333333;*/
+        margin-left: 20px;
+        margin-top: 50px;
+        text-align: center;
+        position: relative;
+    }
+
+    .scrolling_page img.main_panel {
+        width: 95%;
+        position: absolute;
+        left: 25px;
+    }
+
+    #option_block {
+        position: absolute;
+        top: <%= @page.page_style.ypos %>px;
+        left: <%= @page.page_style.xpos %>px;
+        height: <%= @page.page_style.height %>px;
+        width: <%= @page.page_style.width %>px;
+    }
+
+    #slider {
+        height: <%= @page.page_style.height %>px;
+        width: <%= @page.page_style.width %>px;
+    }
+
+    a:hover {
+        color: white;
+    }
+
+</style>
 
 <script type="text/javascript" src="/assets/jquery.anythingslider.js"></script>
 
-<%= image_tag (@comic.pages.first.panel.url), :style => "position:absolute; width:960px; left:0; top:0;" %>
-
-<div style="left: 0px; top: 850px;  position: relative; height: 220px; width: 900px; text-align:center; float: left; z-index: 9999">
-
-  <div id="slider" style="height: 300px; width: 840px; position: relative;">
-
-
-    <% @comic.pages.first.options.each do |option| %>
-        <%= image_tag option.panel.url, :style => "height:220px; width:400px;" %>
-        <%#= link_to (image_tag(option.panel.url, :style => "height:220px; width:400px;")) %>
+<div style="position:fixed;text-align: center;margin-top: -5px;margin-bottom: 5px;margin-left: 45px;padding-top: 10px;width:875px;height: 50px;background: #000000;z-index: 999999999;">
+  <h1 style="color: white;">
+    <% @comic.pages.each_with_index do |page, index| %>
+        <% if page===@page or page.level>@page.level%>
+            <%= link_to "Page #{index + 1}", "#", :style => "color:gray" %> |
+        <% else %>
+            <%= link_to "Page #{index + 1}", comic_show_path(@comic, page) %> |
+        <% end %>
     <% end %>
-
-  </div>
-
-  <%= form_tag :action => "show", :controller => "selections" do %>
-      <% @comic.pages.first.options.each_with_index do |option_name, index| %>
-          <%= hidden_field_tag :option_id, option_name.id %>
-          <div><%= javascript_tag "$('#slider').bind('slide_complete', function(event, slider) { var co = slider.currentPage; if (co == 1) {alert('1')}; }) " %></div>
-      <% end %>
-      <div><%= submit_tag 'OK' %></div>
-  <% end %>
-
-
+  </h1>
 </div>
 
+<div class="scrolling_page">
+  <%= image_tag (@page.panel.url), :class => "main_panel" %>
+  <div id="option_block">
+    <div id="slider">
+      <%= image_tag "choice.jpg" %>
+      <% @page.options.each do |option| %>
+          <%= image_tag option.panel.url %>
+      <% end %>
+    </div>
+    <%= form_for @selection do |f| %>
+        <%= f.hidden_field :page_id, :value => @page.id %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :option_id, :value => 0 %>
+        <%= f.submit "Select this", :class => "btn btn-inverse btn-large", :style => "margin-top:-150px;margin-left:640px;font-size:24px;" %>
+    <% end %>
+  </div>
+</div>
 
 <script type="text/javascript">
-
     $(function () {
-        $('#slider').anythingSlider(); // add any non-default options here
+        $('#slider').anythingSlider({
+            buildNavigation:false,
+            buildStartStop:false,
+            onSlideComplete:function (slider) {
+                var data = {pslide:[], page:[]};
+                data["pslide"].push(slider.currentPage);
+                data["page"].push(<%= @page.id %>);
+                $.ajax({
+                    url:"<%= find_option_path %>",
+                    type:"post",
+                    data:JSON.stringify(data),
+                    contentType:"application/json",
+                    success:function (data) {
+                        $("#selection_option_id").val(data);
+                    }
+                });
+
+
+            }
+        });
     });
-
-
 </script>
 
 

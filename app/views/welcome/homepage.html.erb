@@ -10,10 +10,9 @@
         position: absolute;
         margin: 10px 10px 0 10px;
         padding: 10px 10px 0 10px;
-        background-color: #add8e6;
-        opacity: 0.6;
-        filter: alpha(opacity = 60); /* For IE8 and earlier */
-        /*float: left;*/
+        background-color: white;
+        opacity: 0.8;
+        filter: alpha(opacity = 80); /* For IE8 and earlier */
 
     }
 
@@ -30,15 +29,12 @@
     }
 
     #app_logo {
-        position: absolute;
-        height: 120px;
-        width: 360px;
-        /*left: 465px;*/
-        right: 190px;
-        float: left;
-        /*clear: both;*/
+        float:right;
         margin: 10px;
+        margin-top: 300px;
         padding: 10px;
+        background: black;
+        opacity: 0.8;
     }
 
     .img_area {
@@ -104,27 +100,19 @@
 
 <div id="app_desc_area">
   <div id="app_desc_text">
+    <%= image_tag "idfc_logo.png", :style => "width:60%;" %>
+    <br>
+    <br>
 
-    ComiChron is Ptotem's suite of story-based simulations on subjects ranging from accounting to supply chain management.
+    IDFChronicles is IDFC's suite of story-based simulations to familiarize yourself with the essentials of business conduct.
 
   </div>
 </div>
 
 <div id="app_logo">
-  <img src="/assets/logo_03.gif" style="height:100%; width:100%; padding: 10px 10px 10px 0px; margin: 0px 10px 10px 0px;"> </img>
+  <%= image_tag "idfchronicles.png" %>
 </div>
 
-<div class="img_area">
-
-  <div id="img_area_01"><img src="/assets/batman.jpg" style="height:120px; width:130px;"> </img> </div>
-
-  <div id="img_area_02"><img src="/assets/Bane.jpg" style="height:120px; width:130px;"> </img> </div>
-
-  <div id="img_area_03"><img src="/assets/batman_vs_bane.jpg" style="height:120px; width:130px;"> </img> </div>
-
-  <div id="img_area_04"><img src="/assets/batman_won.jpg" style="height:120px; width:130px;"> </img> </div>
-
-</div>
 
 
 

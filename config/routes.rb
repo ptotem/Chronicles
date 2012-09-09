@@ -61,9 +61,10 @@ Chronicles::Application.routes.draw do
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
 #root :to=>'welcome#index'
-  match "/index"=>"welcome#index",:as=>"index"
-  match "/comics/:id"=>"comics#show",:as=>"show"
-  match "/selections/:id"=>"selections#show",:as=>"show"
+  match "/index"=>"welcome#index",:as=>"comic_index"
+  match "/comics/:id/(:page_id)"=>"comics#show",:as=>"comic_show"
+  match "/selections/:id"=>"selections#show",:as=>"selection_show"
+  match "/find_option"=>"comics#find_option", :as=>"find_option"
 
   #comic/:id/page/:id
 

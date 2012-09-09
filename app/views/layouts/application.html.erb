@@ -3,27 +3,20 @@
 <head>
   <style type="text/css">
     .content{
-        /*background-image: url('/assets/batman_bg.jpg');*/
-        background-image: url('/assets/comic_bg.jpg');
+        background-image: url('/assets/infrastructure.jpg');
         background-repeat: no-repeat;
         background-size: 100% 100%;
 
     }
   </style>
 
-  <title>Comichron</title>
+  <title>IDFChronicles</title>
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <script type="text/javascript">
       $(function() {
-          $(".edit_link").click(function() {
-              $.get("<%=params[:controller]%>" + "/" + $(this).attr("id") + "/edit", function(data) {
 
-                  $("#edit_form .modal-body").html(data);
-                  $("#edit_form").modal('toggle');
-              });
-          });
       });
   </script>
   <%= yield(:head) %>
@@ -33,9 +26,9 @@
   <div class="navbar navbar-fixed-top" style="z-index: 999999999">
     <div class="navbar-inner" style="z-index: 999999999">
       <div class="container">
-        <a class="brand" href="/">Comichron</a>
+        <a class="brand" href="/">IDFChronicles</a>
         <ul class="nav">
-          <li><a href="#about" style="color:white;">About</a></li>
+          <!--<li><a href="#about" style="color:white;">About</a></li>-->
           <!--<li><a href="#contact" style="color:white;">Contact</a></li>-->
         </ul>
 
@@ -58,25 +51,12 @@
   </div>
   <div class="container">
 
-    <!--<div class="page-header" style="height:100px"></div>-->
-    <!--<div style="position:absolute;margin-top: -60px;" class="span12">-->
-      <!--<h2>  <%#= yield(:page_header) %></h2>-->
-    <!--</div>-->
-  </div>
-  <div class="container">
-
     <div class="content" style="position: relative;">
       <%= js extend_gritter :position => :bottom_right %>
       <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
       <%= js add_gritter(flash[:alert], :image => :warning, :title => "Alert!", :sticky => false, :time => 2000) %>
       <%= yield %>
     </div>
-
-    <% if request.fullpath=="/" %>
-
-
-
-    <% end %>
   </div>
 </div>
 

@@ -34,7 +34,7 @@
 }
 /* Navigation buttons + start/stop button, default state */
 .anythingSlider-metallic .anythingControls a {
-	background: transparent url(../images/arrows-metallic.png) -68px -40px repeat-x;
+	background: transparent url(/assets/images/arrows-metallic.png) -68px -40px repeat-x;
 	color: #000;
 	border: #000 1px solid;
 	border-radius: 5px;

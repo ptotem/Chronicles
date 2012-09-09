@@ -1,41 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Comichron</title>
+  <style type="text/css">
+    .content{
+        background: white;
+    }
+  </style>
+
+  <title>IDFChronicles</title>
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <script type="text/javascript">
       $(function() {
-          $(".edit_link").click(function() {
-              $.get("<%=params[:controller]%>" + "/" + $(this).attr("id") + "/edit?get=1", function(data) {
 
-                  $("#edit_form .modal-body").html(data);
-                  $("#edit_form").modal('toggle');
-
-              });
-          });
       });
   </script>
   <%= yield(:head) %>
-  <style>
-      table td {
-          border: none;
-      }
-
-      table tr {
-          border: none;
-      }
-  </style>
 </head>
 <body>
 <div id="wrapper">
   <div class="navbar navbar-fixed-top" style="z-index: 999999999">
     <div class="navbar-inner" style="z-index: 999999999">
       <div class="container">
-        <a class="brand" href="/">Comichron</a>
+        <a class="brand" href="/">IDFChronicles: <%= @comic.name %></a>
         <ul class="nav">
-          <li><a href="#about" style="color:white;">About</a></li>
+          <!--<li><a href="#about" style="color:white;">About</a></li>-->
           <!--<li><a href="#contact" style="color:white;">Contact</a></li>-->
         </ul>
 
@@ -58,28 +48,19 @@
   </div>
   <div class="container">
 
-    <div class="page-header" style="height:100px"></div>
-    <div style="position:absolute;margin-top: -110px;" class="span16">
-      <%= yield(:page_header) %>
-    </div>
-
-    <div class="content">
+    <div class="content" style="position: relative;">
       <%= js extend_gritter :position => :bottom_right %>
       <%= js add_gritter(flash[:notice], :image => :success, :title => "Notice", :sticky => false, :time => 2000) %>
       <%= js add_gritter(flash[:alert], :image => :warning, :title => "Alert!", :sticky => false, :time => 2000) %>
       <%= yield %>
     </div>
-
-    <% if request.fullpath=="/" %>
-
-
-
-    <% end %>
   </div>
 </div>
 
-<%= javascript_include_tag "/assets/exclusions/jquery.pageslide" %>
 
 
 </body>
 </html>
+
+
+

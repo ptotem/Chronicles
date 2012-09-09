@@ -16,6 +16,10 @@ class ComicsController < ApplicationController
 
     @comic = Comic.find(params[:id])
 
+    @page = (params[:page_id].blank? ? @comic.pages.first : Page.find(params[:page_id]))
+    @page_num = (params[:page_id].blank? ? 1 : Page.find(params[:page_id]).level)
+    @selection=Selection.new
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @comic }
@@ -84,8 +88,14 @@ class ComicsController < ApplicationController
     end
   end
 
-  #def show_options
-  #  @options = Option.all
-  #end
+  def find_option
+    @page=Page.find(params[:page][0])
+    if params[:pslide][0]=="1"
+      render :text => 0
+    else
+      @option=@page.options[params[:pslide][0]-2]
+      render :text => @option.id
+    end
+  end
 
 end
