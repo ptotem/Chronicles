@@ -9,7 +9,8 @@ gem 'sqlite3'
 gem 'execjs'
 gem 'therubyracer'
 gem 'thesilverspoon'
-gem 'rails_admin'
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+gem  'thin'
 
 
 # Gems used only for assets and not required
